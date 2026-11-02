@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Тактиль — тренажёр слепой печати</title>
+  <meta name="description" content="Красивый тренажёр слепой печати: пошаговые уроки, живая статистика, виртуальная клавиатура и сохранение прогресса. Русская и английская раскладки.">
+  <meta name="theme-color" content="#070810">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230a0b12'/%3E%3Crect x='12' y='18' width='40' height='28' rx='8' fill='url(%23g)'/%3E%3Crect x='19' y='26' width='7' height='6' rx='2' fill='%230a0b12'/%3E%3Crect x='29' y='26' width='7' height='6' rx='2' fill='%230a0b12'/%3E%3Crect x='39' y='26' width='7' height='6' rx='2' fill='%230a0b12'/%3E%3Crect x='22' y='35' width='20' height='5' rx='2.5' fill='%230a0b12'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#" id="brandLink" aria-label="Тактиль — на главную">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="6" width="19" height="12" rx="4"></rect>
+            <path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M8 14h8"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <b>ТАКТИЛЬ</b>
+          <small>слепая печать</small>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <div class="segmented" role="group" aria-label="Раскладка">
+          <button class="seg-btn" data-layout="ru" type="button">RU</button>
+          <button class="seg-btn" data-layout="en" type="button">EN</button>
+        </div>
+        <button class="icon-btn" id="soundBtn" type="button" aria-label="Звук" title="Звук">
+          <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" type="button" aria-label="Настройки" title="Настройки">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="view-home" class="view">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Тренажёр слепой печати</p>
+          <h1>Печатай<br><span class="grad">не глядя</span></h1>
+          <p class="lede">Десять минут в день — и пальцы сами находят клавиши. Пошаговые уроки, живая статистика и спокойный ритм вместо гонки.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="quickStart" type="button">
+              Начать обучение
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button class="btn btn-ghost" id="freeMode" type="button">Свободный режим</button>
+          </div>
+          <ul class="hero-meta">
+            <li>Без регистрации</li>
+            <li>Прогресс в браузере</li>
+            <li>RU · EN</li>
+          </ul>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-glow"></div>
+          <div class="floating-cap cap-f">ф</div>
+          <div class="floating-cap cap-y">ы</div>
+          <div class="floating-cap cap-v">в</div>
+          <div class="floating-cap cap-a">а</div>
+
+          <div class="preview-card">
+            <div class="preview-head">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span>тактиль · практика</span>
+            </div>
+            <div class="preview-text">
+              <span class="dim">ровный ритм </span><span class="bright">важнее</span><i class="caret"></i><br>
+              <span class="dim">скорости и спешки</span>
+            </div>
+            <div class="preview-keys">
+              <span>ф</span><span>ы</span><span>в</span><span class="active">а</span><span>о</span><span>л</span><span>д</span><span>ж</span>
+            </div>
+            <div class="preview-stats">
+              <div><b>64</b><small>зн/мин</small></div>
+              <div><b>98%</b><small>точность</small></div>
+              <div class="preview-live"><i></i>live</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-strip">
+        <div class="stat-card">
+          <span class="stat-label">Лучшая скорость</span>
+          <div class="stat-value"><span id="statBestWpm">—</span><small>зн/мин</small></div>
+          <span class="stat-note">в этой раскладке</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Точность</span>
+          <div class="stat-value"><span id="statBestAcc">—</span><small>%</small></div>
+          <span class="stat-note">лучший результат</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Уроки</span>
+          <div class="stat-value"><span id="statLessons">0 / 0</span></div>
+          <span class="stat-note">пройдено</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">В практике</span>
+          <div class="stat-value"><span id="statTime">0 мин</span></div>
+          <span class="stat-note">всего времени</span>
+        </div>
+      </div>
+
+      <section class="lessons-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Программа</p>
+            <h2>Уроки</h2>
+            <p class="section-sub">От домашнего ряда к свободной печати. Каждый урок открыт с самого начала.</p>
+          </div>
+          <div class="overall">
+            <div class="overall-text"><span id="homeProgressLabel">0 из 0</span><small>пройдено</small></div>
+            <div class="overall-bar"><span id="homeProgress"></span></div>
+          </div>
+        </div>
+        <div class="lessons-grid" id="lessonsGrid"></div>
+      </section>
+
+      <footer class="footer">
+        <p>Сделано для тех, кто хочет печатать быстрее, чем думает.</p>
+        <p class="footer-dim">Прогресс хранится локально в вашем браузере.</p>
+      </footer>
+    </section>
+
+    <section id="view-trainer" class="view" hidden>
+      <div class="trainer-bar">
+        <button class="btn btn-ghost btn-sm" id="backBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          К урокам
+        </button>
+        <div class="trainer-title-wrap">
+          <span class="trainer-kicker" id="trainerKicker">Урок 01</span>
+          <h2 id="trainerTitle">Домашний ряд</h2>
+        </div>
+        <div class="live-stats">
+          <div class="live-stat"><span id="liveTime">0:00</span><small>время</small></div>
+          <div class="live-stat live-accent"><span id="liveWpm">0</span><small>зн/мин</small></div>
+          <div class="live-stat"><span id="liveAcc">100%</span><small>точность</small></div>
+        </div>
+      </div>
+
+      <div class="progress-track"><div id="lessonProgress"></div></div>
+
+      <div class="typing-card" id="typingCard">
+        <div class="typing-text" id="typingText"></div>
+        <div class="typing-bottom">
+          <div class="key-hint" id="keyHint">Начни печатать — таймер запустится сам</div>
+          <button class="btn btn-ghost btn-sm" id="restartBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            Заново
+          </button>
+        </div>
+      </div>
+
+      <div class="keyboard-panel" id="keyboardPanel">
+        <div class="keyboard-head">
+          <span class="kb-layout" id="kbLayoutLabel">ЙЦУКЕН</span>
+          <div class="finger-legend">
+            <span class="legend-item"><i style="--dot:#ff7d95"></i>мизинцы</span>
+            <span class="legend-item"><i style="--dot:#ffb36b"></i>безымянные</span>
+            <span class="legend-item"><i style="--dot:#ffe066"></i>средние</span>
+            <span class="legend-item"><i style="--dot:#7ce38b"></i>указательные</span>
+            <span class="legend-item"><i style="--dot:#8f96ad"></i>пробел</span>
+          </div>
+        </div>
+        <div class="keyboard" id="keyboard"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="resultsModal" role="dialog" aria-modal="true" aria-labelledby="resTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+    <div class="modal-card results-card">
+      <div class="stars-big" id="resStars"></div>
+      <div class="results-badge" id="resBadge" hidden>Новый рекорд</div>
+      <h2 id="resTitle">Урок пройден</h2>
+      <p class="results-sub" id="resSubtitle">Точность и ритм — главное. Скорость догонит.</p>
+      <div class="wpm-big"><span id="resWpm">0</span><small>знаков в минуту</small></div>
+      <div class="results-grid">
+        <div><span id="resAcc">0%</span><small>точность</small></div>
+        <div><span id="resTime">0:00</span><small>время</small></div>
+        <div><span id="resErrors">0</span><small id="resErrorsLabel">ошибок</small></div>
+        <div><span id="resChars">0</span><small id="resCharsLabel">знаков</small></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="againBtn" type="button">Ещё раз</button>
+        <button class="btn btn-primary" id="nextBtn" type="button">Следующий урок</button>
+      </div>
+      <button class="link-btn" id="homeBtn" type="button">Вернуться к урокам</button>
+    </div>
+  </div>
+
+  <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card settings-card">
+      <div class="modal-head">
+        <h2 id="settingsTitle">Настройки</h2>
+        <button class="icon-btn" type="button" data-close aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <label class="setting">
+        <span class="setting-text"><b>Звук нажатий</b><small>Мягкий клик и сигнал ошибки</small></span>
+        <input type="checkbox" id="soundToggle" class="switch">
+      </label>
+      <label class="setting">
+        <span class="setting-text"><b>Виртуальная клавиатура</b><small>Подсказки под текстом</small></span>
+        <input type="checkbox" id="keyboardToggle" class="switch">
+      </label>
+      <label class="setting">
+        <span class="setting-text"><b>Цвета пальцев</b><small>Показывать закрепление клавиш</small></span>
+        <input type="checkbox" id="colorsToggle" class="switch">
+      </label>
+
+      <div class="setting setting-range">
+        <span class="setting-text"><b>Размер текста</b><small>Комфортный для глаз</small></span>
+        <div class="range-wrap">
+          <input type="range" id="fontRange" min="18" max="32" step="1" value="22">
+          <span class="range-value" id="fontValue">22</span>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <button class="btn btn-ghost btn-sm" id="resetProgress" type="button">Сбросить прогресс</button>
+        <span class="settings-note">Настройки сохраняются автоматически</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
